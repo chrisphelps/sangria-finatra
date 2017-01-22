@@ -28,30 +28,14 @@ class ProductRepo {
 
 
 
-
 object SchemaDefinition {
 
-  // done as hand-rolled
-  implicit val PictureType = ObjectType(
-    "Picture",
-    "The product picture",
-
-    fields[Unit, Picture](
-      Field("width", IntType, resolve = _.value.width),
-      Field("height", IntType, resolve = _.value.height),
-      Field("url", OptionType(StringType),
-        description = Some("Picture CDN URL"),
-        resolve = _.value.url)))
+  implicit val PictureType =
+    deriveObjectType[Unit, Picture](
+      ObjectTypeDescription("The product picture"),
+      DocumentField("url", "Picture CDN URL"))
 
 
-  // done as the macro
-//  implicit val PictureType =
-//    deriveObjectType[Unit, Picture](
-//      ObjectTypeDescription("The product picture"),
-//      DocumentField("url", "Picture CDN URL"))
-
-
-  // hand-rolled?
   val IdentifiableType = InterfaceType(
     "Identifiable",
     "Entity that can be identified",
@@ -60,7 +44,6 @@ object SchemaDefinition {
       Field("id", StringType, resolve = _.value.id)))
 
 
-  // macro
   val ProductType =
     deriveObjectType[Unit, Product](
       Interfaces(IdentifiableType),
@@ -81,6 +64,4 @@ object SchemaDefinition {
 
 
   val schema = Schema(QueryType)
-
-
 }
