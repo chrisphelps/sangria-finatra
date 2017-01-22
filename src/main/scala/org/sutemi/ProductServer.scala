@@ -30,4 +30,9 @@ class ProductController extends Controller {
     "Hello " + request.params.getOrElse("name", "unnamed")
   }
 
+  get("/") { request: Request =>
+    response.ok.file("/graphiql.html")
+  }
+
+
 }
