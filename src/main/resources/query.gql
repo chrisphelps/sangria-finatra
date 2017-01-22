@@ -1,0 +1,14 @@
+query MyProduct {
+  product(id: "2") {
+    name
+    description
+
+    picture(size: 500) {
+      width, height, url
+    }
+  }
+
+  products {
+    name
+  }
+}
