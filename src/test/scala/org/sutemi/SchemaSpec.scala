@@ -81,7 +81,7 @@ class SchemaSpec extends FlatSpec with Matchers {
         |    ]
         |  }
         |}
-      """.stripMargin).getOrElse(Json.Null))
+      """.stripMargin).right.get)
   }
 
 
@@ -100,8 +100,7 @@ class SchemaSpec extends FlatSpec with Matchers {
         |    }
         |  }
         |}
-      """.stripMargin).getOrElse(Json.Null)
-    )
+      """.stripMargin).right.get)
   }
 
 
@@ -122,7 +121,6 @@ class SchemaSpec extends FlatSpec with Matchers {
         |    }
         |  }
         |}
-      """.stripMargin).getOrElse(Json.Null)
-    )
+      """.stripMargin).right.get)
   }
 }
